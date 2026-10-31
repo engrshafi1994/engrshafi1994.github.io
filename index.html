@@ -471,9 +471,9 @@
     </footer>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex flex-col items-center justify-center min-h-screen p-4 sm:p-6" onclick="closeModal()">
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex-col items-center justify-center min-h-screen p-4 sm:p-6" onclick="closeModal()">
         <div class="relative max-w-xs sm:max-w-md w-full my-auto flex flex-col items-center justify-center" onclick="event.stopPropagation()">
-            <!-- Close Button (Pinned neatly above the image on mobile) -->
+            <!-- Close Button -->
             <button onclick="closeModal()" class="self-end mb-3 text-white bg-purple-900/80 p-2 rounded-full border border-purple-500/40 hover:bg-purple-800 transition focus:outline-none">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
@@ -496,15 +496,30 @@
         }
 
         // Lightbox
-        function openModal(img) {
-            document.getElementById('modal-img').src = img;
-            document.getElementById('lightbox-modal').classList.remove('hidden');
+        function openModal(imgSrc) {
+            const modal = document.getElementById('lightbox-modal');
+            const modalImg = document.getElementById('modal-img');
+            
+            modalImg.src = imgSrc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        
+            // Prevent background scrolling and layout jump by locking body padding
+            const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
             document.body.style.overflow = 'hidden';
+            if (scrollBarWidth > 0) {
+                document.body.style.paddingRight = scrollBarWidth + 'px';
+            }
         }
-
+        
         function closeModal() {
-            document.getElementById('lightbox-modal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            // Restore body scrolling and reset padding
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
         }
 
         // Simulator Logic
