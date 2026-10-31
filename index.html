@@ -46,10 +46,22 @@
         }
     </script>
     <style>
+
+        html {
+            scrollbar-gutter: stable;
+            overflow-y: auto;
+            width: 100vw;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
         body {
             background-color: #0d0218;
             color: #f3f4f6;
+            width: 100vw;
+            max-width: 100vw;
             overflow-x: hidden;
+            position: relative;
         }
 
         .ambient-glow {
@@ -471,8 +483,8 @@
     </footer>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex-col items-center justify-center min-h-screen p-4 sm:p-6" onclick="closeModal()">
-        <div class="relative max-w-xs sm:max-w-md w-full my-auto flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex-col items-center justify-center p-4 sm:p-6" onclick="closeModal()">
+        <div class="relative w-full max-w-sm sm:max-w-md mx-auto my-auto flex flex-col items-center justify-center" onclick="event.stopPropagation()">
             <!-- Close Button -->
             <button onclick="closeModal()" class="self-end mb-3 text-white bg-purple-900/80 p-2 rounded-full border border-purple-500/40 hover:bg-purple-800 transition focus:outline-none">
                 <i data-lucide="x" class="w-6 h-6"></i>
